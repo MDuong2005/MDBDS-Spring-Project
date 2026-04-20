@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MdbdsApplication<mdbds>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.maiduongland.mdbds.MdbdsApplication",
+            "projectName": "mdbds",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

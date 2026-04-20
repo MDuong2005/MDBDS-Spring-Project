@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    
+    <div class="bg-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="mb-8 flex items-center text-sm text-gray-500">
+                <a href="/" class="hover:text-primary">Trang chủ</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900 font-medium">Chính sách bảo mật</span>
+            </nav>
+
+            <header class="mb-12">
+                <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Chính Sách Bảo Mật Thông Tin</h1>
+                <p class="text-lg text-gray-600">Tại MDLand, chúng tôi cam kết mang lại trải nghiệm xem thông tin bất động sản thoải mái và an toàn nhất. Mọi quy trình đều được tối giản hóa để bảo vệ sự riêng tư tuyệt đối của bạn.</p>
+            </header>
+
+            <div class="prose prose-blue max-w-none text-gray-700 space-y-8">
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">01</span>
+                        Không thu thập dữ liệu cá nhân
+                    </h2>
+                    <p>Website của chúng tôi hoạt động theo mô hình mở để khách hàng tự do tham khảo. Chúng tôi <strong>KHÔNG</strong> thực hiện các hành vi sau:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Không yêu cầu đăng ký tài khoản hoặc đăng nhập cá nhân.</li>
+                        <li>Không sử dụng biểu mẫu (form) để yêu cầu điền họ tên, số điện thoại hay email.</li>
+                        <li>Không sử dụng cookie theo dõi hành vi để quảng cáo bám đuổi.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">02</span>
+                        Liên hệ trực tiếp qua Mạng xã hội
+                    </h2>
+                    <p>Mọi nhu cầu tư vấn pháp lý, xem vị trí đất hoặc đàm phán giá cả sẽ được thực hiện trực tiếp thông qua Messenger hoặc Facebook cá nhân của chúng tôi.</p>
+                    <p>Khi bạn nhấn nút liên hệ, trình duyệt sẽ chuyển hướng bạn đến ứng dụng chính thức của Facebook. Thông tin cuộc trò chuyện sẽ được bảo mật theo tiêu chuẩn toàn cầu của Meta.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">03</span>
+                        Cam kết từ MDLand
+                    </h2>
+                    <p>Chúng tôi chỉ tiếp nhận thông tin mà bạn chủ động cung cấp trong quá trình chat trực tiếp để hỗ trợ công việc. MDLand cam kết tuyệt đối không lưu trữ thông tin khách hàng vào cơ sở dữ liệu website và không chia sẻ cho bất kỳ bên thứ ba nào.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">04</span>
+                        Quyền lợi của bạn
+                    </h2>
+                    <p>Vì không có hệ thống tài khoản, bạn có toàn quyền kiểm soát cuộc trò chuyện trên ứng dụng cá nhân của mình. Nếu không còn nhu cầu tư vấn, bạn có thể xóa tin nhắn hoặc chặn liên lạc bất cứ lúc nào mà không để lại bất kỳ dấu vết dữ liệu nào trên website của chúng tôi.</p>
+                </section>
+            </div>
+
+            <div class="mt-16 p-8 bg-gray-50 rounded-2xl border border-gray-100 italic text-sm text-gray-500">
+                Lưu ý: Chính sách này có hiệu lực từ ngày 01/01/2026 và được thiết kế để phù hợp với tôn chỉ hoạt động minh bạch, nhanh gọn của MDLand.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

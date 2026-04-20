@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MDLand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-primary { background-color: #1e40af; }
+    </style>
+</head>
+<body class="bg-gray-50 flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 h-screen bg-gray-900 text-white fixed">
+        <div class="p-6 border-b border-gray-800">
+            <h1 class="text-xl font-bold tracking-wider text-blue-400">MD ADMIN</h1>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">Vùng Đất Cấm 6868</p>
+        </div>
+        <nav class="mt-6">
+            <a th:href="@{/mdadmin-vung-dat-cam-6868(key=${key})}" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800">
+                <span class="mr-3">📂</span> Trang Portal
+            </a>
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/properties(key=${key})}" class="flex items-center px-6 py-3 bg-primary text-white">
+                <span class="mr-3">🏠</span> Bất động sản
+            </a>
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/news(key=${key})}" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white transition-colors">
+                <span class="mr-3">📰</span> Tin tức
+            </a>
+            <a href="/" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white transition-colors border-t border-gray-800 mt-6">
+                <span class="mr-3">🌐</span> Xem Website
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-grow p-10">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Bảng Quản Lý Dự Án</h2>
+                <p class="text-sm text-gray-500 mt-1">Hệ thống đồng bộ trực tiếp với Database Supabase.</p>
+            </div>
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/add(key=${key})}" class="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-blue-800 transition-all shadow-lg shadow-blue-200">
+                + Đăng tin mới
+            </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 border-b border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
+                    <tr>
+                        <th class="px-6 py-4">ID</th>
+                        <th class="px-6 py-4">Tiêu đề</th>
+                        <th class="px-6 py-4">Danh mục</th>
+                        <th class="px-6 py-4">Giá & Diện tích</th>
+                        <th class="px-6 py-4">Vị trí</th>
+                        <th class="px-6 py-4">Hot?</th>
+                        <th class="px-6 py-4 text-center">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 text-sm">
+                    <tr th:each="p : ${listProperties}" class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-medium text-gray-400" th:text="${p.id}">1</td>
+                        <td class="px-6 py-4">
+                            <span class="font-bold text-gray-900 block" th:text="${p.title}">Đất nền trung tâm</span>
+                            <span class="text-[10px] text-gray-400" th:text="${'Slug: ' + p.slug}">slug-mau</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="bg-blue-50 text-primary text-[10px] font-bold px-2 py-1 rounded" th:text="${p.category != null ? p.category.name : '-'}">Category</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="font-bold text-blue-700 block" th:text="${p.price >= 1 ? p.price + ' Tỷ' : p.price * 1000 + ' Triệu'}">2 Tỷ</span>
+                            <span class="text-xs text-gray-500" th:text="${p.area + ' m²'}">100 m²</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-gray-700 block" th:text="${p.ward}">Ward</span>
+                            <span class="text-[10px] text-gray-400" th:text="${p.address}">Full Address</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span th:if="${p.isHot}" class="text-red-500">🔥 Yes</span>
+                            <span th:unless="${p.isHot}" class="text-gray-300">No</span>
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <a th:href="@{/mdadmin-vung-dat-cam-6868/sua-thong-tin(id=${p.id}, key=${key})}" 
+                               class="text-blue-500 hover:bg-blue-50 px-3 py-1.5 rounded-lg transition-all font-semibold italic text-xs mr-2">
+                                Sửa
+                            </a>
+                            <a th:href="@{/mdadmin-vung-dat-cam-6868/delete/{id}(id=${p.id}, key=${key})}" 
+                               onclick="return confirm('Hành động này không thể hoàn tác. Bạn chắc chắn muốn xóa?')"
+                               class="text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all font-semibold italic text-xs">
+                                Xóa bỏ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr th:if="${listProperties.empty}">
+                        <td colspan="7" class="px-6 py-20 text-center text-gray-400 italic">Database đang trống. Hãy bắt đầu bằng cách thêm dữ liệu mô phỏng.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>

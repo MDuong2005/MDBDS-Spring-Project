@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    
+    <div class="bg-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="mb-8 flex items-center text-sm text-gray-500">
+                <a href="/" class="hover:text-primary">Trang chủ</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900 font-medium">Điều khoản dịch vụ</span>
+            </nav>
+
+            <header class="mb-12">
+                <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Điều Khoản Dịch Vụ</h1>
+                <p class="text-lg text-gray-600">Việc sử dụng website MaiDuongLand đồng nghĩa với việc bạn chấp nhận các điều khoản và điều kiện được nêu dưới đây.</p>
+            </header>
+
+            <div class="prose prose-blue max-w-none text-gray-700 space-y-8">
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">01</span>
+                        Quyền sở hữu trí tuệ
+                    </h2>
+                    <p>Toàn bộ nội dung trên website bao gồm văn bản, hình ảnh, mã nguồn và giao diện thuộc sở hữu của MDLand. Mọi hành vi sao chép, sử dụng lại cho mục đích thương mại mà không có sự cho phép bằng văn bản đều bị nghiêm cấm.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">02</span>
+                        Trách nhiệm của người dùng
+                    </h2>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Cung cấp thông tin chính xác khi gửi yêu cầu tư vấn.</li>
+                        <li>Không sử dụng website để phát tán các thông tin độc hại, vi phạm pháp luật.</li>
+                        <li>Không thực hiện các hành vi gây cản trở sự hoạt động bình thường của website.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">03</span>
+                        Miễn trừ trách nhiệm thông tin
+                    </h2>
+                    <p>Mặc dù chúng tôi luôn nỗ lực cập nhật dữ liệu chính xác nhất, các thông tin về dự án, giá cả và quy hoạch chỉ mang tính chất tham khảo tại thời điểm bài viết. Người dùng nên liên hệ trực tiếp với chúng tôi để xác thực thông tin trước khi thực hiện giao dịch.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-primary rounded-full flex items-center justify-center mr-3 text-sm">04</span>
+                        Thay đổi điều khoản
+                    </h2>
+                    <p>MDLand có quyền thay đổi nội dung trang web và các điều khoản dịch vụ mà không cần báo trước. Các thay đổi sẽ có hiệu lực ngay khi được đăng tải lên website.</p>
+                </section>
+            </div>
+
+            <div class="mt-16 p-8 bg-gray-50 rounded-2xl border border-gray-100 text-sm text-gray-500">
+                Nếu bạn có bất kỳ câu hỏi nào về các điều khoản này, vui lòng liên hệ với chúng tôi qua <a href="mailto:maid88391@gmail.com" class="text-primary hover:underline">maid88391@gmail.com</a>.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    
+    <div class="bg-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="mb-8 flex items-center text-sm text-gray-500">
+                <a href="/" class="hover:text-primary">Trang chủ</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900 font-medium">Quy trình giao dịch</span>
+            </nav>
+
+            <header class="mb-12">
+                <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Quy Trình Giao Dịch Chuyên Nghiệp</h1>
+                <p class="text-lg text-gray-600">MDLand áp dụng quy trình chuẩn hóa giúp khách hàng sở hữu bất động sản một cách an toàn, nhanh chóng và minh bạch.</p>
+            </header>
+
+            <div class="space-y-12">
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-shrink-0 w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg shadow-blue-200">1</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-3">Tư vấn và Tham quan thực tế</h2>
+                        <p class="text-gray-600">Khách hàng liên hệ để nhận tư vấn chuyên sâu về các dự án phù hợp với nhu cầu. Chuyên viên của chúng tôi sẽ đưa quý khách tham quan trực tiếp sơ đồ, vị trí và hiện trạng của dự án.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-shrink-0 w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg shadow-blue-200">2</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-3">Kiểm tra Pháp lý và Đặt cọc</h2>
+                        <p class="text-gray-600">Chúng tôi hỗ trợ quý khách kiểm tra quy hoạch, sổ đỏ và các giấy tờ pháp lý liên quan. Sau khi đã yên tâm, hai bên tiến hành làm biên bản đặt cọc để giữ căn/lô đất.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-shrink-0 w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg shadow-blue-200">3</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-3">Công chứng Chuyển nhượng</h2>
+                        <p class="text-gray-600">Theo lịch hẹn, quý khách và chủ đầu tư/bên bán sẽ tiến hành ký hợp đồng công chứng tại Văn phòng công chứng có thẩm quyền. Đây là bước quan trọng xác lập quyền sở hữu hợp pháp.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-shrink-0 w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg shadow-blue-200">4</div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-3">Hoàn tất Nghĩa vụ tài chính & Nhận sổ</h2>
+                        <p class="text-gray-600">Sau khi công chứng, các bên thực hiện nghĩa vụ đóng thuế và lệ phí trước bạ. MDLand sẽ hỗ trợ theo dõi tiến độ cấp sổ đỏ mới và bàn giao tận tay quý khách.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 p-10 bg-blue-600 rounded-3xl text-white">
+                <h3 class="text-2xl font-bold mb-4">Bạn cần tư vấn thêm về quy trình?</h3>
+                <p class="mb-6 opacity-90">Đừng ngần ngại liên hệ với các chuyên gia giàu kinh nghiệm của chúng tôi để được hỗ trợ tốt nhất.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="tel:0979705956" class="bg-white text-primary px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors">Gọi ngay: 0979705956</a>
+                    <a href="#" class="border border-white border-opacity-30 bg-white bg-opacity-10 px-6 py-3 rounded-xl font-bold hover:bg-opacity-20 transition-colors">Gửi yêu cầu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

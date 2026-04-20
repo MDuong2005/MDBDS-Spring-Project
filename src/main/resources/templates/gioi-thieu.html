@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    
+    <!-- Hero Section -->
+    <div class="bg-primary py-20 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <span class="inline-block px-3 py-1 bg-white text-primary text-[10px] font-bold rounded-full mb-6 uppercase tracking-wider">Về chúng tôi</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+                    Lời ngỏ từ nhà sáng lập <br/><span class="text-blue-300">MDLand</span>
+                </h1>
+                <p class="text-xl text-blue-100 italic leading-relaxed">
+                    "Tôi chọn làm bất động sản bằng tư duy của một người làm công nghệ vì tôi muốn thay đổi cách chúng ta tiếp cận thông tin nhà đất."
+                </p>
+            </div>
+        </div>
+        <!-- Decorative background elements -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-white opacity-5 -skew-x-12 translate-x-20"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            <!-- Left Column: Letter Content -->
+            <div class="lg:col-span-8">
+                <article class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-8">
+                    <p class="text-lg font-medium text-gray-900 border-l-4 border-primary pl-4">
+                        Chào bạn, tôi là <span class="text-primary font-bold">Mai Xuân Dương</span>, người sáng lập và phát triển hệ thống MDLand.
+                    </p>
+
+                    <p>
+                        Là một sinh viên chuyên ngành <strong>Kỹ thuật phần mềm tại Đại học FPT</strong>, tôi luôn quan niệm rằng công nghệ chỉ thực sự có giá trị khi nó giải quyết được các vấn đề thực tế và tạo ra hiệu quả kinh doanh rõ rệt. Chính vì vậy, tôi xây dựng MDLand không chỉ là một dự án học thuật, mà là một nền tảng kinh doanh bất động sản chuyên nghiệp tại Hà Nội.
+                    </p>
+
+                    <p>
+                        MDLand được ra đời với sứ mệnh trở thành kênh tra cứu tin tức và tham khảo đất đai minh bạch hàng đầu Thủ đô.
+                    </p>
+
+                    <div class="my-12 bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8">Tầm nhìn của MDLand</h2>
+                        
+                        <div class="space-y-10">
+                            <!-- Vision Item 1 -->
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A2 2 0 013 15.483V4a2 2 0 012-2h14a2 2 0 012 2v11.483a2 2 0 01-1.553 1.943L15 20l-3-1.5L9 20z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Bao phủ toàn Hà Nội</h3>
+                                    <p class="text-gray-600">Từ những mảnh đất tiềm năng tại khu vực phía Tây như Thạch Thất, Quốc Oai đến các dự án sôi động tại trung tâm và các quận huyện đang phát triển. Tôi nỗ lực mang đến cái nhìn toàn cảnh về thị trường bất động sản Thủ đô.</p>
+                                </div>
+                            </div>
+
+                            <!-- Vision Item 2 -->
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Hỗ trợ tra cứu & Tham khảo</h3>
+                                    <p class="text-gray-600">Website cung cấp công cụ tra cứu hoàn toàn miễn phí. Bạn có thể tìm thấy thông tin về giá cả, pháp lý và tin tức quy hoạch mới nhất của Hà Nội mà không cần các thủ tục đăng nhập phức tạp.</p>
+                                </div>
+                            </div>
+
+                            <!-- Vision Item 3 -->
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04default_api:run_commandM0 0h24v24H0z" fill="none"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04" />
+                                        <path d="M5 11a7 7 0 1 1 14 0v2a8 8 0 0 1-8 8a8 8 0 0 1-8-8v-2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Dữ liệu được kiểm chứng</h3>
+                                    <p class="text-gray-600">Với tư duy của một người làm công nghệ, tôi ưu tiên tính chính xác và logic. Mọi dữ liệu trên hệ thống đều được tôi sàng lọc để đảm bảo bạn nhận được thông tin có giá trị tham khảo cao nhất.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Tôi tin rằng việc mua bán hay đầu tư đất đai tại Hà Nội cần sự cẩn trọng và thông tin chuẩn xác. Với sức trẻ, nền tảng công nghệ và khát vọng kinh doanh tử tế, tôi hy vọng MDLand sẽ là người bạn đồng hành tin cậy trên hành trình tìm kiếm không gian sống và cơ hội đầu tư của bạn.
+                    </p>
+
+                    <div class="pt-8 border-t border-gray-100 flex flex-col items-end">
+                        <p class="text-gray-500 mb-1">Trân trọng,</p>
+                        <p class="text-2xl font-bold text-gray-900">Mai Xuân Dương</p>
+                        <p class="text-primary font-medium italic">Founder MDLand</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Right Column: Sidebar Info -->
+            <div class="lg:col-span-4 lg:sticky lg:top-24 h-fit">
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center space-x-4 mb-8">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-primary font-bold text-2xl">M</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">MDLand</h4>
+                            <p class="text-sm text-gray-400">Bất Động Sản Thủ Đô</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="p-5 bg-gray-50 rounded-2xl">
+                            <span class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Thông điệp</span>
+                            <p class="text-gray-700 italic text-sm">"Mang tư duy công nghệ vào quản lý và tham vấn thị trường bất động sản."</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <a href="/du-an" class="block w-full text-center py-4 bg-primary text-white rounded-2xl font-bold hover:bg-blue-700 transition-colors">
+                                Xem các dự án
+                            </a>
+                            <a href="https://zalo.me/0979705956" target="_blank" class="block w-full text-center py-4 border-2 border-blue-600 text-blue-600 rounded-2xl font-bold hover:bg-blue-50 transition-colors">
+                                Chat với Dương
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Tin tức - MDLand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-primary { background-color: #1e40af; }
+    </style>
+</head>
+<body class="bg-gray-50 flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 h-screen bg-gray-900 text-white fixed">
+        <div class="p-6 border-b border-gray-800">
+            <h1 class="text-xl font-bold tracking-wider text-blue-400">MD ADMIN</h1>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">Vùng Đất Cấm 6868</p>
+        </div>
+        <nav class="mt-6">
+            <a th:href="@{/mdadmin-vung-dat-cam-6868(key=${key})}" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800">
+                <span class="mr-3">📂</span> Trang Portal
+            </a>
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/properties(key=${key})}" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white transition-colors">
+                <span class="mr-3">🏠</span> Bất động sản
+            </a>
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/news(key=${key})}" class="flex items-center px-6 py-3 bg-primary text-white">
+                <span class="mr-3">📰</span> Tin tức nhà đất
+            </a>
+            <a href="/" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white transition-colors border-t border-gray-800 mt-6">
+                <span class="mr-3">🌐</span> Xem Website
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-grow p-10">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Danh sách Tin tức</h2>
+                <p class="text-sm text-gray-500 mt-1">Các bài viết chuyên sâu về thị trường đất đai.</p>
+            </div>
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/news/add(key=${key})}" class="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-blue-800 transition-all shadow-lg shadow-blue-200">
+                + Viết bài mới
+            </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 border-b border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
+                    <tr>
+                        <th class="px-6 py-4">ID</th>
+                        <th class="px-6 py-4">Tiêu đề bài viết</th>
+                        <th class="px-6 py-4">Ngày đăng</th>
+                        <th class="px-6 py-4 text-center">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 text-sm">
+                    <tr th:each="post : ${listPosts}" class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-medium text-gray-400" th:text="${post.id}">1</td>
+                        <td class="px-6 py-4">
+                            <span class="font-bold text-gray-900 block" th:text="${post.title}">Tiêu đề bài viết</span>
+                            <span class="text-[10px] text-gray-400" th:text="${post.slug}">slug-bai-viet</span>
+                        </td>
+                        <td class="px-6 py-4 text-gray-500">
+                            <span th:if="${post.createdAt != null}" th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy HH:mm')}"></span>
+                            <span th:if="${post.createdAt == null}">Chờ xử lý...</span>
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <a th:href="@{/mdadmin-vung-dat-cam-6868/news/sua-bai-viet(id=${post.id}, key=${key})}" 
+                               class="text-blue-500 hover:bg-blue-50 px-3 py-1.5 rounded-lg transition-all font-semibold italic text-xs mr-2">
+                                Sửa
+                            </a>
+                            <a th:href="@{/mdadmin-vung-dat-cam-6868/news/delete/{id}(id=${post.id}, key=${key})}" 
+                               onclick="return confirm('Xóa bài viết này?')"
+                               class="text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-all font-semibold italic text-xs">
+                                Xóa
+                            </a>
+                        </td>
+                    </tr>
+                    <tr th:if="${listPosts.empty}">
+                        <td colspan="4" class="px-6 py-20 text-center text-gray-400 italic">Chưa có bài viết nào. Hãy bắt đầu chia sẻ kiến thức đất đai!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>

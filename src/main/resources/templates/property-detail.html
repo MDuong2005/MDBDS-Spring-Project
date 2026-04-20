@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div th:if="${p == null}" class="text-center py-16 bg-white rounded-2xl border border-gray-200">
+            <h1 class="text-2xl font-bold text-gray-700">Bất động sản không tồn tại</h1>
+            <a href="/du-an" class="text-primary mt-4 inline-block font-semibold hover:underline">Quay lại danh sách dự án</a>
+        </div>
+
+        <div th:if="${p != null}" class="space-y-8 animate-in fade-in duration-700">
+            <!-- Premium Image Gallery Grid (Max 3 visible) -->
+            <div class="relative group" th:with="imgList=${p.imagesJson != null and !p.imagesJson.isEmpty() ? p.imagesJson.split(',') : (p.thumbnailUrl != null and !p.thumbnailUrl.isEmpty() ? new String[]{p.thumbnailUrl} : new String[]{})}">
+                
+                <!-- Layout for No Images -->
+                <div th:if="${imgList.length == 0}" class="w-full h-[450px] bg-gray-100 rounded-3xl flex items-center justify-center border-2 border-dashed border-gray-200">
+                    <div class="text-center">
+                        <span class="text-5xl mb-4 block">📸</span>
+                        <p class="text-gray-400 font-medium">Chưa có hình ảnh</p>
+                    </div>
+                </div>
+
+                <!-- Layout for 1 Image -->
+                <div th:if="${imgList.length == 1}" class="relative h-[500px] overflow-hidden rounded-3xl shadow-2xl">
+                    <img th:src="${imgList[0]}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Property Main">
+                    <div class="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent"></div>
+                </div>
+
+                <!-- Premium Layout for 2 Images -->
+                <div th:if="${imgList.length == 2}" class="grid grid-cols-2 gap-3 h-[500px]">
+                    <div class="relative overflow-hidden rounded-l-3xl shadow-xl">
+                        <img th:src="${imgList[0]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Property 1">
+                    </div>
+                    <div class="relative overflow-hidden rounded-r-3xl shadow-xl">
+                        <img th:src="${imgList[1]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Property 2">
+                    </div>
+                </div>
+
+                <!-- Premium Hero Layout for 3+ Images -->
+                <div th:if="${imgList.length >= 3}" class="grid grid-cols-4 grid-rows-2 gap-3 h-[500px]">
+                    <!-- Main Big Image -->
+                    <div class="col-span-2 row-span-2 relative overflow-hidden rounded-l-3xl shadow-2xl">
+                        <img th:src="${imgList[0]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Main View">
+                    </div>
+                    <!-- Two smaller side images -->
+                    <div class="col-span-2 row-span-1 relative overflow-hidden rounded-tr-3xl shadow-xl">
+                        <img th:src="${imgList[1]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Detail View 1">
+                    </div>
+                    <div class="col-span-2 row-span-1 relative overflow-hidden rounded-br-3xl shadow-xl">
+                        <img th:src="${imgList[2]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="Detail View 2">
+                        <!-- Overlay if more than 3 -->
+                        <div th:if="${imgList.length > 3}" class="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-[2px] group cursor-pointer hover:bg-black/40 transition-all">
+                            <div class="text-center text-white">
+                                <span class="text-2xl font-bold" th:text="'+' + (imgList.length - 3)">+5</span>
+                                <p class="text-xs font-medium uppercase tracking-widest mt-1">Xem tất cả</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Tag -->
+                <div class="absolute top-6 left-6 flex space-x-2">
+                    <span th:if="${p.isHot}" class="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">Nổi bật</span>
+                    <span class="bg-blue-600/90 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg backdrop-blur-md" th:if="${p.category != null}" th:text="${p.category.name}">Bất động sản</span>
+                </div>
+            </div>
+
+            <!-- Content Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Info -->
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <h1 class="text-4xl font-extrabold text-gray-900 leading-tight" th:text="${p.title}">Tên bất động sản Hạng Sang</h1>
+                        </div>
+                        
+                        <!-- Rich Grid Specs -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                            <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center space-x-4">
+                                <span class="text-2xl">💰</span>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase font-black">Giá bán</p>
+                                    <p class="text-lg font-bold text-blue-700" th:text="${p.price}">Thỏa thuận</p>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center space-x-4">
+                                <span class="text-2xl">📐</span>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase font-black">Diện tích</p>
+                                    <p class="text-lg font-bold text-gray-800"><span th:text="${p.area}">0</span> <span class="text-sm font-normal">m²</span></p>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center space-x-4">
+                                <span class="text-2xl">📍</span>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase font-black">Khu vực</p>
+                                    <p class="text-lg font-bold text-gray-800" th:text="${p.ward}">Phường/Thị trấn</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t border-gray-50">
+                            <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                                <span class="w-1.5 h-6 bg-blue-600 rounded-full mr-3"></span>
+                                Mô tả chi tiết
+                            </h3>
+                            <div class="text-gray-600 leading-relaxed whitespace-pre-wrap text-lg" th:text="${p.description}">
+                                Thông tin chi tiết đang được cập nhật...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Contact -->
+                <div class="space-y-6">
+                    <div class="bg-gray-900 rounded-3xl p-8 text-white shadow-2xl sticky top-8">
+                        <h3 class="text-xl font-bold mb-6">Liên hệ tư vấn</h3>
+                        <div class="space-y-4">
+                            <a href="tel:0901234567" class="flex items-center space-x-4 p-4 bg-white/10 rounded-2xl hover:bg-white/20 transition-all border border-white/10 group">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">📞</span>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase font-black">Hotline</p>
+                                    <p class="text-base font-bold">Gọi trực tiếp</p>
+                                </div>
+                            </a>
+                            <a href="https://zalo.me" class="flex items-center space-x-4 p-4 bg-blue-600 rounded-2xl hover:bg-blue-700 transition-all shadow-xl group">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">💬</span>
+                                <div>
+                                    <p class="text-[10px] text-blue-200 uppercase font-black">Chat Zalo</p>
+                                    <p class="text-base font-bold">Nhắn tin ngay</p>
+                                </div>
+                            </a>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-6 text-center italic">MDLand - Cam kết thông tin minh bạch & chính xác 100%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

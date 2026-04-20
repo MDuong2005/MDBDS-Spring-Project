@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div th:if="${post == null}" class="text-center py-20">
+            <h1 class="text-2xl font-bold text-gray-500">Bài viết không tồn tại hoặc đã bị xóa.</h1>
+            <a href="/" class="text-primary mt-4 inline-block hover:underline">Quay lại trang chủ</a>
+        </div>
+
+        <div th:if="${post != null}" class="animate-in slide-in-from-bottom-4 duration-700">
+            <!-- Breadcrumbs -->
+            <nav class="flex mb-10 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-3">
+                    <li><a href="/" class="hover:text-blue-600 transition-colors">MDLand</a></li>
+                    <li><span class="text-gray-300">/</span></li>
+                    <li><a href="/news" class="hover:text-blue-600 transition-colors text-blue-600">Tin tức</a></li>
+                    <li><span class="text-gray-300">/</span></li>
+                    <li class="text-gray-900 truncate max-w-[200px]" th:text="${post.title}">Đang xem</li>
+                </ol>
+            </nav>
+
+            <header class="mb-12">
+                <h1 class="text-4xl md:text-5xl font-black text-gray-900 leading-[1.1] mb-6" th:text="${post.title}">Tiêu đề bài viết</h1>
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">MD</div>
+                    <div class="text-sm">
+                        <p class="font-bold text-gray-900">Ban biên tập MDLand</p>
+                        <p class="text-gray-500" th:if="${post.createdAt != null}" th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy')}">20/04/2026</p>
+                        <p class="text-gray-500" th:if="${post.createdAt == null}">Hôm nay</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- News Gallery - High End -->
+            <div class="space-y-4 mb-16" th:with="imgList=${post.imagesJson != null and !post.imagesJson.isEmpty() ? post.imagesJson.split(',') : (post.thumbnailUrl != null ? new String[]{post.thumbnailUrl} : new String[]{})}">
+                <div class="aspect-[21/9] w-full rounded-[32px] overflow-hidden shadow-2xl relative group">
+                    <img id="news-main-image" 
+                         th:src="${imgList.length > 0 ? imgList[0] : 'https://placehold.co/1200x600?text=MDLand+News'}" 
+                         class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="News Hero Image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                
+                <!-- Horizontal Thumbnails for Multi-upload -->
+                <div th:if="${imgList.length > 1}" class="flex space-x-3 overflow-x-auto pb-4 no-scrollbar">
+                    <div th:each="url : ${imgList}" 
+                         class="flex-shrink-0 w-24 h-16 cursor-pointer rounded-xl overflow-hidden border-2 border-transparent hover:border-blue-600 transition-all opacity-70 hover:opacity-100"
+                         th:onclick="|document.getElementById('news-main-image').src='${url}'|">
+                        <img th:src="${url}" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <article class="max-w-none">
+                <div class="prose prose-blue prose-xl text-gray-700 leading-relaxed font-serif tracking-tight" th:utext="${#strings.replace(post.content, '\n', '<br/>')}">
+                    Nội dung bài viết...
+                </div>
+            </article>
+            
+            <!-- Footer Sign-off -->
+            <div class="mt-20 pt-12 border-t border-gray-100">
+                <div class="bg-gray-50 rounded-[32px] p-8 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Bạn quan tâm đến thông tin này?</h4>
+                        <p class="text-sm text-gray-500">Liên hệ với chúng tôi để được tư vấn chi tiết hơn.</p>
+                    </div>
+                    <a href="https://zalo.me" class="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+                        Hỗ trợ qua Zalo
+                    </a>
+                </div>
+                
+                <div class="mt-12 text-center text-[10px] font-black uppercase tracking-[0.3em] text-gray-300">
+                    <p>© 2024 MDLand - Mang lại giá trị thực cho ngôi nhà của bạn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    
+    <!-- Hero Section -->
+    <div class="bg-gray-900 py-16 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+                Tin Tức <span class="text-blue-400">Nhà Đất</span> Hà Nội
+            </h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Cập nhật những thông tin mới nhất về thị trường, quy hoạch và kiến thức bất động sản tại Thủ đô.
+            </p>
+        </div>
+    </div>
+
+    <!-- News Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div th:if="${listPosts.empty}" class="bg-white rounded-2xl p-12 text-center border-2 border-dashed border-gray-200">
+            <p class="text-gray-500 italic">Hiện tại chưa có tin bài nào. Vui lòng quay lại sau!</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- News Card -->
+            <div th:each="post : ${listPosts}" class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col">
+                <div class="relative h-48">
+                    <img th:src="${post.thumbnailUrl != null && !post.thumbnailUrl.isEmpty() ? post.thumbnailUrl : 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1600&auto=format&fit=crop'}" 
+                         alt="News Image" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">
+                        KIẾN THỨC
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <span class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-2" 
+                          th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy')}">20/04/2026</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3" th:text="${post.title}">Tiêu đề tin tức đất đai</h3>
+                    <p class="text-gray-600 text-sm line-clamp-3 mb-6" th:text="${post.content}">Nội dung tóm tắt của bài viết...</p>
+                    <div class="mt-auto">
+                        <a th:href="'/news/' + ${post.slug}" class="text-primary font-bold text-sm hover:underline">Đọc tiếp &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

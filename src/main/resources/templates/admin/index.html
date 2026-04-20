@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Admin Portal - MDLand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-primary { background-color: #1e40af; }
+    </style>
+</head>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-6 text-white">
+
+    <div class="max-w-5xl w-full">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl font-black tracking-tighter text-blue-400 mb-2">MDLAND ADMIN</h1>
+            <p class="text-gray-400 uppercase tracking-[0.3em] text-xs">Hệ Thống Quản Trị Tổng Hợp</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            
+            <!-- Quick Link: Properties -->
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/properties(key=${key})}" 
+               class="group bg-gray-800 p-8 rounded-[2.5rem] border border-gray-700 hover:border-blue-500 hover:bg-gray-800/50 transition-all duration-300 shadow-2xl">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">🏠</div>
+                <h2 class="text-2xl font-bold mb-2">Quản lý Nhà Đất</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">Đăng tin bán đất, chỉnh sửa thông tin dự án, quản lý giá và vị trí các Quận/Huyện Hà Nội.</p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-700/50">
+                    <span class="text-blue-400 font-bold" th:text="${propCount + ' sản phẩm'}">0 sản phẩm</span>
+                    <span class="text-gray-500 group-hover:text-white transition-colors">Truy cập &rarr;</span>
+                </div>
+            </a>
+
+            <!-- Quick Link: News -->
+            <a th:href="@{/mdadmin-vung-dat-cam-6868/news(key=${key})}" 
+               class="group bg-gray-800 p-8 rounded-[2.5rem] border border-gray-700 hover:border-green-500 hover:bg-gray-800/50 transition-all duration-300 shadow-2xl">
+                <div class="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">📰</div>
+                <h2 class="text-2xl font-bold mb-2">Quản lý Tin Tức</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">Viết bài phân tích thị trường, cập nhật thông tin quy hoạch và chia sẻ kiến thức đầu tư.</p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-700/50">
+                    <span class="text-green-400 font-bold" th:text="${newsCount + ' bài viết'}">0 bài viết</span>
+                    <span class="text-gray-500 group-hover:text-white transition-colors">Truy cập &rarr;</span>
+                </div>
+            </a>
+
+        </div>
+
+        <footer class="mt-16 text-center">
+            <a href="/" class="text-gray-500 hover:text-white transition-colors text-sm font-medium uppercase tracking-widest">
+                &lsaquo; Quay lại Website công cộng
+            </a>
+        </footer>
+    </div>
+
+</body>
+</html>

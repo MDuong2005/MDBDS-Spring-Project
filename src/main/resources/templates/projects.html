@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(~{::main_content})}">
+<body th:fragment="main_content">
+    <!-- Enhanced Hero & Search Section -->
+    <div class="bg-gray-900 py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=2070" class="w-full h-full object-cover" alt="Background">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+            <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6">
+                Tìm kiếm <span class="text-blue-400">Không Gian Sống</span> Lý Tưởng
+            </h1>
+            
+            <!-- Advanced Search Bar -->
+            <div class="max-w-5xl mx-auto mt-10">
+                <form action="/du-an" method="GET" class="bg-white p-2 rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center gap-2">
+                    <!-- Keyword -->
+                    <div class="flex-1 w-full px-6 py-2 border-r border-gray-100 flex items-center space-x-3">
+                        <span class="text-xl">🔍</span>
+                        <input type="text" name="q" th:value="${q}" placeholder="Tên dự án, khu vực..." 
+                               class="w-full border-none focus:ring-0 text-gray-700 font-medium placeholder-gray-400">
+                    </div>
+                    
+                    <!-- Category -->
+                    <div class="flex-1 w-full px-6 py-2 border-r border-gray-100 flex items-center space-x-3">
+                        <span class="text-xl">🏠</span>
+                        <select name="cat" class="w-full border-none focus:ring-0 text-gray-700 font-bold bg-transparent">
+                            <option value="">Loại nhà đất</option>
+                            <option th:each="c : ${listCategories}" th:value="${c.id}" th:text="${c.name}" th:selected="${c.id == catId}">Danh mục</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="flex-1 w-full px-6 py-2 border-r border-gray-100 flex items-center space-x-3">
+                        <span class="text-xl">💵</span>
+                        <select id="priceRange" class="w-full border-none focus:ring-0 text-gray-700 font-bold bg-transparent" onchange="updatePrices(this.value)">
+                            <option value="">Mọi tầm giá</option>
+                            <option value="0-1" th:selected="${minPrice == 0 and maxPrice == 1}">Dưới 1 Tỷ</option>
+                            <option value="1-2" th:selected="${minPrice == 1 and maxPrice == 2}">1 - 2 Tỷ</option>
+                            <option value="2-3" th:selected="${minPrice == 2 and maxPrice == 3}">2 - 3 Tỷ</option>
+                            <option value="3-5" th:selected="${minPrice == 3 and maxPrice == 5}">3 - 5 Tỷ</option>
+                            <option value="5-7" th:selected="${minPrice == 5 and maxPrice == 7}">5 - 7 Tỷ</option>
+                            <option value="7-10" th:selected="${minPrice == 7 and maxPrice == 10}">7 - 10 Tỷ</option>
+                            <option value="10-999" th:selected="${minPrice == 10}">Trên 10 Tỷ</option>
+                        </select>
+                        <input type="hidden" name="min" id="minInput" th:value="${minPrice}">
+                        <input type="hidden" name="max" id="maxInput" th:value="${maxPrice}">
+                    </div>
+
+                    <button type="submit" class="w-full md:w-auto bg-blue-600 text-white px-10 py-4 rounded-[1.8rem] font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg">
+                        Tìm ngay
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <!-- SECTION 1: HOT DEALS (Top 5 Featured) -->
+        <div th:if="${hotProperties != null and !hotProperties.empty}" class="mb-20">
+            <div class="flex items-center space-x-4 mb-8">
+                <span class="w-12 h-1 bg-red-600 rounded-full"></span>
+                <h2 class="text-3xl font-black text-gray-900 tracking-tight flex items-center italic">
+                    🔥 SIÊU PHẨM NỔI BẬT
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div th:each="p : ${hotProperties}" class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-red-50 group">
+                    <div class="relative h-64">
+                        <img th:src="${p.thumbnailUrl != null && !p.thumbnailUrl.isEmpty() ? p.thumbnailUrl : 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070'}" 
+                             alt="Hot Property" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="bg-red-600 text-white text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-[0.2em] mb-2 inline-block">Hot Deal</span>
+                            <h3 class="text-xl font-bold text-white line-clamp-1" th:text="${p.title}">Luxury Villa</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-black text-red-600" th:text="${p.price != null ? (p.price >= 1 ? p.price + ' Tỷ' : p.price * 1000 + ' Triệu') : 'Liên hệ'}">0 VND</span>
+                            <span class="text-sm font-bold text-gray-500"><span th:text="${p.area}">0</span> m²</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6 line-clamp-2" th:text="${p.description}">Mô tả dự án nổi bật...</p>
+                        <a th:href="@{'/property/' + ${p.slug}}" class="block text-center bg-gray-900 text-white font-black py-4 rounded-2xl hover:bg-red-600 transition-all uppercase text-xs tracking-widest shadow-lg">Khám phá ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: ALL PROJECTS -->
+        <div class="flex items-center space-x-4 mb-8">
+            <span class="w-12 h-1 bg-blue-600 rounded-full"></span>
+            <h2 class="text-3xl font-black text-gray-900 tracking-tight flex items-center">
+                🚀 DANH SÁCH NHÀ ĐẤT
+            </h2>
+        </div>
+
+        <div th:if="${listProperties.empty}" class="bg-gray-50 rounded-[2.5rem] p-20 text-center border border-gray-100">
+            <p class="text-gray-400 font-medium italic text-lg">Không tìm thấy dự án nào khớp với tiêu chí của bạn.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Regular Property Card -->
+            <div th:each="p : ${listProperties}" class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 group">
+                <div class="relative h-48">
+                    <img th:src="${p.thumbnailUrl != null && !p.thumbnailUrl.isEmpty() ? p.thumbnailUrl : 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1632'}" 
+                         alt="Property Image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-900 text-[10px] font-black px-3 py-1.5 rounded-lg shadow-sm" 
+                         th:if="${p.category != null}" th:text="${p.category.name}">
+                        Danh mục
+                    </div>
+                </div>
+                <div class="p-5">
+                    <p class="text-blue-700 font-black text-lg mb-1" th:text="${p.price != null ? (p.price >= 1 ? p.price + ' Tỷ' : p.price * 1000 + ' Triệu') : 'Liên hệ'}">0 VND</p>
+                    <h3 class="text-sm font-bold text-gray-900 mb-4 truncate" th:text="${p.title}">Tiêu đề mẫu</h3>
+                    <div class="flex items-center justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest pt-4 border-t border-gray-50">
+                        <span th:text="${p.area} + ' m²'">100 m²</span>
+                        <span th:text="${p.ward}">Vị trí</span>
+                        <a th:href="@{'/property/' + ${p.slug}}" class="text-blue-600 hover:underline">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updatePrices(val) {
+            if (!val) {
+                document.getElementById('minInput').value = '';
+                document.getElementById('maxInput').value = '';
+                return;
+            }
+            const parts = val.split('-');
+            document.getElementById('minInput').value = parts[0];
+            document.getElementById('maxInput').value = parts[1];
+        }
+    </script>
+</body>
+</html>

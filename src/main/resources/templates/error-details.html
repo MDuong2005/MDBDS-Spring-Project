@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lỗi hệ thống - MDLand Debug</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10 font-mono">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border-t-8 border-red-500">
+        <h1 class="text-3xl font-bold text-red-600 mb-4">Hệ thống báo lỗi (<span th:text="${statusCode}">500</span>)</h1>
+        <p class="mb-8 text-gray-600">Đừng lo lắng, hãy gửi thông tin dưới đây cho kỹ thuật viên để được xử lý ngay lập tức.</p>
+        
+        <div class="space-y-4 text-sm">
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <span class="font-bold text-gray-700 block mb-1">Mã lỗi (Status Code):</span>
+                <code class="text-red-500 font-bold" th:text="${statusCode}">500</code>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <span class="font-bold text-gray-700 block mb-1">Thông báo (Message):</span>
+                <code class="text-blue-600" th:text="${errorMessage}">Error Message</code>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <span class="font-bold text-gray-700 block mb-1">Chi tiết lỗi (Exception):</span>
+                <pre class="whitespace-pre-wrap text-xs text-gray-500 bg-black text-green-400 p-4 rounded" th:text="${exception}">Stack trace pending...</pre>
+            </div>
+        </div>
+        
+        <div class="mt-8">
+            <a href="/" class="text-blue-500 underline">Quay lại Trang chủ</a>
+        </div>
+    </div>
+</body>
+</html>
