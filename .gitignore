@@ -1,0 +1,15 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+/help.md
+/.mvn/wrapper/maven-wrapper.properties
+/mvnw
+/mvnw.cmd
+/.idea/
+/.vscode/
+/.history/
+/*.iml
+/*.ipr
+/*.iws
+.DS_Store
+.metadata
+/bin/

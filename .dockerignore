@@ -1,0 +1,10 @@
+target/
+.git/
+.vscode/
+.mvn/
+mvnw
+mvnw.cmd
+Dockerfile
+.dockerignore
+README.md
+.gitignore
